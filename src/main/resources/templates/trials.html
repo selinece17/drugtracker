@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--
+    Clinical Trials List Page
+    -----------------------------------
+    Displays all registered clinical trials in a table format.
+    Data is provided by the ClinicalTrialController and
+    dynamically rendered using Thymeleaf.
+-->
+
+<head th:replace="~{fragments :: head('Clinical Trials')}"></head>
+<!--
+    Replaces the <head> section with reusable head fragment.
+    The string 'Clinical Trials' is passed dynamically as page title.
+-->
+
+<body>
+
+<!-- Shared navigation bar fragment -->
+<div th:replace="~{fragments :: navbar}"></div>
+
+<div class="container">
+
+    <!--
+        Header row containing:
+        - Page title
+        - Button to navigate to trial registration form
+    -->
+    <div class="header-row">
+        <h1>Clinical Trials</h1>
+
+        <!-- Link to create/register a new clinical trial -->
+        <a class="btn" th:href="@{/trials/new}">+ Add Trial</a>
+    </div>
+
+    <!-- ===============================
+         Clinical Trials Data Table
+         =============================== -->
+    <table>
+        <thead>
+        <tr>
+            <!-- Table column headers -->
+            <th>Trial ID</th>
+            <th>Compound</th>
+            <th>Phase</th>
+            <th>Status</th>
+            <th></th> <!-- Action column -->
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <!--
+            Iterates over the 'trials' list passed from the controller.
+            For each trial object (t), a table row is generated.
+        -->
+        <tr th:each="t : ${trials}">
+
+            <!-- Displays external or internal trial identifier -->
+            <td th:text="${t.trialId}"></td>
+
+            <!-- Displays associated compound name -->
+            <td th:text="${t.compoundName}"></td>
+
+            <!-- Displays clinical trial phase (e.g., PHASE_1, PHASE_2, etc.) -->
+            <td th:text="${t.phase}"></td>
+
+            <!-- Displays trial status (e.g., ACTIVE, COMPLETED, TERMINATED) -->
+            <td th:text="${t.status}"></td>
+
+            <!-- Action column for deleting a trial -->
+            <td>
+                <!--
+                    Generates dynamic delete URL using trial ID.
+                    Example: /trials/delete/3
+                -->
+                <a th:href="@{'/trials/delete/' + ${t.id}}"
+                   class="delete">
+                    Delete
+                </a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

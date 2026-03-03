@@ -1,0 +1,167 @@
+/* ===============================
+   Global Page Styling
+   =============================== */
+
+/* Applies base styling to the entire page */
+body {
+    font-family: "Segoe UI", sans-serif;   /* Clean modern font */
+    background-color: #f4f7fb;            /* Light background for soft UI feel */
+    margin: 0;                            /* Remove default browser margin */
+}
+
+
+/* ===============================
+   Navigation Bar Styling
+   =============================== */
+
+/* Top navigation bar */
+nav {
+    background-color: #1f3c88;   /* Primary brand color */
+    padding: 15px 40px;          /* Vertical and horizontal spacing */
+    color: white;                /* Default text color */
+}
+
+/* Container inside navigation for layout control */
+.nav-container {
+    display: flex;                      /* Horizontal layout */
+    justify-content: space-between;     /* Space between logo and links */
+    align-items: center;                /* Vertical alignment */
+}
+
+/* Navigation links */
+.nav-container a {
+    color: white;                /* White links for contrast */
+    margin-left: 20px;           /* Space between links */
+    text-decoration: none;       /* Remove underline */
+    font-weight: 500;            /* Slightly bold text */
+}
+
+
+/* ===============================
+   Main Content Layout
+   =============================== */
+
+/* Main page content container */
+.container {
+    padding: 40px;   /* Spacious layout */
+}
+
+/* Page headings */
+h1 {
+    color: #1f3c88;   /* Match primary brand color */
+}
+
+
+/* ===============================
+   Dashboard Card Layout
+   =============================== */
+
+/* Wrapper for dashboard cards */
+.cards {
+    display: flex;        /* Horizontal layout */
+    gap: 20px;            /* Space between cards */
+    margin-top: 30px;     /* Space above cards */
+}
+
+/* Individual statistic card */
+.card {
+    background: white;                             /* Clean white background */
+    padding: 20px;                                 /* Internal spacing */
+    flex: 1;                                       /* Equal width cards */
+    border-radius: 10px;                           /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);       /* Soft shadow for depth */
+    text-align: center;                            /* Center content */
+}
+
+/* Card subtitle (e.g., "Total Compounds") */
+.card h3 {
+    color: #555;               /* Muted text */
+    font-size: 14px;           /* Smaller heading */
+    text-transform: uppercase; /* Uniform style */
+}
+
+/* Card main value (e.g., numbers/statistics) */
+.card p {
+    font-size: 28px;           /* Large emphasis text */
+    font-weight: bold;         /* Strong visual importance */
+    margin-top: 10px;
+    color: #1f3c88;            /* Brand color for consistency */
+}
+
+
+/* ===============================
+   Table Styling
+   =============================== */
+
+/* Main table layout */
+table {
+    width: 100%;                 /* Full width */
+    border-collapse: collapse;   /* Remove spacing between borders */
+    background: white;
+    margin-top: 20px;
+    border-radius: 10px;         /* Rounded corners */
+    overflow: hidden;            /* Prevent overflow beyond rounded edges */
+}
+
+/* Table header cells */
+th {
+    background-color: #e8eef7;   /* Light blue header background */
+    padding: 15px;
+    text-align: left;
+}
+
+/* Table data cells */
+td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;  /* Subtle row divider */
+}
+
+/* Row hover effect for better UX */
+tr:hover {
+    background-color: #f8fbff;
+}
+
+
+/* ===============================
+   Buttons and Links
+   =============================== */
+
+/* Primary action button */
+.btn {
+    background-color: #1f3c88;  /* Brand color */
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+/* Delete action link */
+.delete {
+    color: #c0392b;       /* Red for destructive action */
+    text-decoration: none;
+}
+
+
+/* ===============================
+   Forms
+   =============================== */
+
+/* Wrapper for each form field */
+.form-group {
+    margin-bottom: 20px;   /* Space between fields */
+}
+
+/* Input fields and dropdowns */
+input, select {
+    width: 100%;               /* Full-width inputs */
+    padding: 10px;
+    border: 1px solid #ccc;    /* Light border */
+    border-radius: 6px;        /* Rounded edges */
+    margin-top: 5px;
+}
+
+/* Validation error message */
+.error {
+    color: #c0392b;     /* Red for errors */
+    font-size: 13px;    /* Smaller than normal text */
+}

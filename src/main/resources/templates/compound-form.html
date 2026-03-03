@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--
+    Compound Creation Page
+    -----------------------------------
+    This page allows users to create a new Compound entity.
+    It uses Thymeleaf for server-side rendering and form binding.
+-->
+
+<head th:replace="~{fragments :: head('New Compound')}"></head>
+<!--
+    Replaces this <head> section with a reusable fragment.
+    The parameter 'New Compound' sets the page title dynamically.
+-->
+
+<body>
+
+<!-- Navigation bar fragment (shared across pages) -->
+<div th:replace="~{fragments :: navbar}"></div>
+
+<div class="container">
+    <!-- Page heading -->
+    <h1>Add New Compound</h1>
+
+    <!--
+        Form bound to compoundRequest object.
+        th:object connects this form to the DTO provided by the controller.
+        Form submits POST request to /compounds/save.
+    -->
+    <form th:action="@{/compounds/save}" th:object="${compoundRequest}" method="post">
+
+        <!-- ===============================
+             Compound Name Field
+             =============================== -->
+        <div class="form-group">
+            <label>Name</label>
+
+            <!--
+                th:field automatically binds this input to compoundRequest.name
+                and handles value repopulation after validation errors.
+            -->
+            <input type="text" th:field="*{name}" />
+
+            <!--
+                Displays validation errors for 'name' field if they exist.
+                #fields.hasErrors checks for validation issues.
+            -->
+            <p class="error" th:if="${#fields.hasErrors('name')}"
+               th:errors="*{name}"></p>
+        </div>
+
+        <!-- ===============================
+             Molecular Formula Field
+             =============================== -->
+        <div class="form-group">
+            <label>Molecular Formula</label>
+
+            <!-- Bound to compoundRequest.molecularFormula -->
+            <input type="text" th:field="*{molecularFormula}" />
+
+            <!-- Displays validation errors for molecularFormula -->
+            <p class="error" th:errors="*{molecularFormula}"></p>
+        </div>
+
+        <!-- ===============================
+             Compound Status Dropdown
+             =============================== -->
+        <div class="form-group">
+            <label>Status</label>
+
+            <!--
+                Dropdown bound to compoundRequest.status.
+                Options are dynamically generated from the 'statuses' enum
+                passed from the controller.
+            -->
+            <select th:field="*{status}">
+                <option th:each="s : ${statuses}"
+                        th:value="${s}"
+                        th:text="${s}"></option>
+            </select>
+        </div>
+
+        <!-- ===============================
+             Therapeutic Area Dropdown
+             =============================== -->
+        <div class="form-group">
+            <label>Therapeutic Area</label>
+
+            <!--
+                Dropdown bound to compoundRequest.therapeuticArea.
+                Options are generated from 'areas' enum list.
+            -->
+            <select th:field="*{therapeuticArea}">
+                <option th:each="a : ${areas}"
+                        th:value="${a}"
+                        th:text="${a}"></option>
+            </select>
+        </div>
+
+        <!-- Submit button -->
+        <button class="btn">Save</button>
+    </form>
+</div>
+
+</body>
+</html>

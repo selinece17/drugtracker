@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--
+    Compounds List Page
+    -----------------------------------
+    Displays all compounds in a tabular format.
+    Data is dynamically injected using Thymeleaf.
+-->
+
+<head th:replace="~{fragments :: head('Compounds')}"></head>
+<!--
+    Replaces the <head> section with a reusable Thymeleaf fragment.
+    The string 'Compounds' is passed as the dynamic page title.
+-->
+
+<body>
+
+<!-- Shared navigation bar fragment -->
+<div th:replace="~{fragments :: navbar}"></div>
+
+<div class="container">
+
+    <!--
+        Header row containing:
+        - Page title
+        - Button to navigate to the compound creation form
+    -->
+    <div class="header-row">
+        <h1>Compounds</h1>
+
+        <!-- Link to create a new compound -->
+        <a class="btn" th:href="@{/compounds/new}">+ Add Compound</a>
+    </div>
+
+    <!-- ===============================
+         Compounds Data Table
+         =============================== -->
+    <table>
+        <thead>
+        <tr>
+            <!-- Table column headers -->
+            <th>Name</th>
+            <th>Status</th>
+            <th>Therapeutic Area</th>
+            <th>Trials</th>
+            <th>Inventory</th>
+            <th></th> <!-- Empty column for actions -->
+        </tr>
+        </thead>
+
+        <tbody>
+        <!--
+            Iterates over the 'compounds' list passed from the controller.
+            For each compound object (c), a new table row is generated.
+        -->
+        <tr th:each="c : ${compounds}">
+
+            <!-- Display compound name -->
+            <td th:text="${c.name}"></td>
+
+            <!-- Display compound development status -->
+            <td th:text="${c.status}"></td>
+
+            <!-- Display therapeutic area classification -->
+            <td th:text="${c.therapeuticArea}"></td>
+
+            <!-- Display number of associated clinical trials -->
+            <td th:text="${c.trialCount}"></td>
+
+            <!-- Display number of inventory records -->
+            <td th:text="${c.inventoryCount}"></td>
+
+            <!-- Action column (Delete operation) -->
+            <td>
+                <!--
+                    Generates dynamic delete URL using compound ID.
+                    Example: /compounds/delete/1
+                -->
+                <a th:href="@{'/compounds/delete/' + ${c.id}}"
+                   class="delete">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

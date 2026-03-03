@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--
+    Inventory Page
+    -----------------------------------
+    Displays all inventory records in a tabular format.
+    Data is dynamically populated using Thymeleaf
+    from the InventoryController.
+-->
+
+<head th:replace="~{fragments :: head('Inventory')}"></head>
+<!--
+    Replaces the <head> section with the reusable head fragment.
+    The string 'Inventory' is passed dynamically as the page title.
+-->
+
+<body>
+
+<!-- Shared navigation bar fragment -->
+<div th:replace="~{fragments :: navbar}"></div>
+
+<div class="container">
+
+    <!-- Page header section -->
+    <div class="header-row">
+        <h1>Inventory</h1>
+    </div>
+
+    <!-- ===============================
+         Inventory Data Table
+         =============================== -->
+    <table>
+        <thead>
+        <tr>
+            <!-- Table column headers -->
+            <th>Lot</th>
+            <th>Compound</th>
+            <th>Quantity</th>
+            <th>Storage</th>
+            <th>Expiration Date</th>
+            <th></th> <!-- Action column -->
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <!--
+            Iterates over the 'inventory' list provided by the controller.
+            For each inventory item (i), a table row is generated.
+        -->
+        <tr th:each="i : ${inventory}">
+
+            <!-- Displays lot number -->
+            <td th:text="${i.lotNumber}"></td>
+
+            <!-- Displays associated compound name -->
+            <td th:text="${i.compoundName}"></td>
+
+            <!--
+                Displays quantity with unit combined.
+                Example: "50 mg"
+            -->
+            <td th:text="${i.quantity + ' ' + i.unit}"></td>
+
+            <!-- Displays storage condition (e.g., 2-8°C, Room Temp) -->
+            <td th:text="${i.storageCondition}"></td>
+
+            <!-- Displays expiration date -->
+            <td th:text="${i.expiryDate}"></td>
+
+            <!-- Delete action column -->
+            <td>
+                <!--
+                    Generates dynamic delete URL using inventory item ID.
+                    Example: /inventory/delete/5
+                -->
+                <a th:href="@{'/inventory/delete/' + ${i.id}}"
+                   class="delete">
+                    Delete
+                </a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

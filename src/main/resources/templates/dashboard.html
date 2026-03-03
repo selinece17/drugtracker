@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--
+    Dashboard Page
+    -----------------------------------
+    Displays high-level portfolio statistics.
+    Data is provided by the IndexController and
+    dynamically injected using Thymeleaf.
+-->
+
+<head th:replace="~{fragments :: head('Dashboard')}"></head>
+<!--
+    Replaces the <head> section with a reusable Thymeleaf fragment.
+    The string 'Dashboard' is passed as the dynamic page title.
+-->
+
+<body>
+
+<!-- Shared navigation bar fragment -->
+<div th:replace="~{fragments :: navbar}"></div>
+
+<div class="container">
+
+    <!-- Main dashboard title -->
+    <h1>Portfolio Dashboard</h1>
+
+    <!-- ===============================
+         Statistics Cards Section
+         =============================== -->
+    <div class="cards">
+
+        <!-- Total Compounds Card -->
+        <div class="card">
+            <h3>Total Compounds</h3>
+
+            <!--
+                Displays total number of compounds.
+                Value retrieved from stats object provided by controller.
+            -->
+            <p th:text="${stats.totalCompounds}"></p>
+        </div>
+
+        <!-- Active Trials Card -->
+        <div class="card">
+            <h3>Active Trials</h3>
+
+            <!-- Displays number of currently active clinical trials -->
+            <p th:text="${stats.activeTrials}"></p>
+        </div>
+
+        <!-- Controlled Substances Card -->
+        <div class="card">
+            <h3>Controlled Substances</h3>
+
+            <!-- Displays count of compounds classified as controlled substances -->
+            <p th:text="${stats.controlledSubstances}"></p>
+        </div>
+
+        <!-- Expiring Soon Alerts Card -->
+        <div class="card">
+            <h3>Expiring Soon</h3>
+
+            <!-- Displays number of inventory items nearing expiration -->
+            <p th:text="${stats.expiringSoonAlerts}"></p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

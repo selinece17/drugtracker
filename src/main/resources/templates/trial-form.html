@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--
+    Clinical Trial Registration Page
+    -----------------------------------
+    Allows users to register a new clinical trial.
+    Form is bound to a TrialRequest DTO and
+    processed by the ClinicalTrialController.
+-->
+
+<head th:replace="~{fragments :: head('New Trial')}"></head>
+<!--
+    Replaces the <head> section with reusable fragment.
+    The string 'New Trial' is passed dynamically as page title.
+-->
+
+<body>
+
+<!-- Shared navigation bar fragment -->
+<div th:replace="~{fragments :: navbar}"></div>
+
+<div class="container">
+
+    <!-- Page heading -->
+    <h1>Register Clinical Trial</h1>
+
+    <!--
+        Form bound to trialRequest object.
+        Submits POST request to /trials/save.
+        th:object connects form fields to TrialRequest DTO.
+    -->
+    <form th:action="@{/trials/save}" th:object="${trialRequest}" method="post">
+
+        <!-- ===============================
+             Compound Selection Dropdown
+             =============================== -->
+        <div class="form-group">
+            <label>Compound</label>
+
+            <!--
+                Dropdown bound to trialRequest.compoundId.
+                Options dynamically generated from 'compounds'
+                list provided by the controller.
+            -->
+            <select th:field="*{compoundId}" class="form-control">
+
+                <!-- Default placeholder option -->
+                <option value="" th:text="'-- Select a Compound --'"></option>
+
+                <!-- Dynamically generate options -->
+                <option th:each="compound : ${compounds}"
+                        th:value="${compound.id}"
+                        th:text="${compound.name}">
+                </option>
+            </select>
+        </div>
+
+        <!-- ===============================
+             Trial ID Field
+             =============================== -->
+        <div class="form-group">
+            <label>Trial ID</label>
+
+            <!-- Bound to trialRequest.trialId -->
+            <input type="text" th:field="*{trialId}" />
+
+            <!-- Displays validation errors for trialId -->
+            <span th:if="${#fields.hasErrors('trialId')}"
+                  th:errors="*{trialId}"
+                  style="color:red;"></span>
+        </div>
+
+        <!-- ===============================
+             Trial Title Field
+             =============================== -->
+        <div class="form-group">
+            <label>Title</label>
+
+            <!-- Bound to trialRequest.title -->
+            <input type="text" th:field="*{title}" />
+
+            <!-- Displays validation errors for title -->
+            <span th:if="${#fields.hasErrors('title')}"
+                  th:errors="*{title}"
+                  style="color:red;"></span>
+        </div>
+
+        <!-- ===============================
+             Trial Phase Dropdown
+             =============================== -->
+        <div class="form-group">
+            <label>Phase</label>
+
+            <!--
+                Dropdown bound to trialRequest.phase.
+                Options generated from TrialPhase enum values.
+            -->
+            <select th:field="*{phase}">
+                <option th:each="p : ${phases}"
+                        th:value="${p}"
+                        th:text="${p}"></option>
+            </select>
+        </div>
+
+        <!-- ===============================
+             Trial Status Dropdown
+             =============================== -->
+        <div class="form-group">
+            <label>Status</label>
+
+            <!--
+                Dropdown bound to trialRequest.status.
+                Options generated from TrialStatus enum values.
+            -->
+            <select th:field="*{status}">
+                <option th:each="s : ${statuses}"
+                        th:value="${s}"
+                        th:text="${s}"></option>
+            </select>
+        </div>
+
+        <!-- Submit button -->
+        <button class="btn">Save</button>
+    </form>
+</div>
+
+</body>
+</html>

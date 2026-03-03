@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--
+    Fragments Template
+    -----------------------------------
+    This file contains reusable Thymeleaf fragments.
+    Fragments allow layout reuse across multiple pages
+    (e.g., head section and navigation bar).
+-->
+
+<head th:fragment="head(title)">
+    <!--
+        Head Fragment
+        -----------------------------------
+        Accepts a parameter 'title' to dynamically set the page title.
+        Example usage:
+        <head th:replace="~{fragments :: head('Dashboard')}"></head>
+    -->
+
+    <meta charset="UTF-8">
+
+    <!-- Dynamically sets the page title -->
+    <title th:text="${title}">Drug Tracker</title>
+
+    <!-- Links the main CSS stylesheet -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!--
+    Navbar Fragment
+    -----------------------------------
+    Shared navigation bar used across all pages.
+    Example usage:
+    <div th:replace="~{fragments :: navbar}"></div>
+-->
+<nav th:fragment="navbar">
+    <div class="nav-container">
+
+        <!-- Application Logo / Branding -->
+        <div class="logo">DrugTracker R&D</div>
+
+        <!-- Navigation Links -->
+        <div class="links">
+
+            <!-- Link to Dashboard -->
+            <a th:href="@{/}">Dashboard</a>
+
+            <!-- Link to Compounds page -->
+            <a th:href="@{/compounds}">Compounds</a>
+
+            <!-- Link to Clinical Trials page -->
+            <a th:href="@{/trials}">Trials</a>
+
+            <!-- Link to Inventory page -->
+            <a th:href="@{/inventory}">Inventory</a>
+
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>
