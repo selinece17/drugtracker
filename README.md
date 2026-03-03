@@ -112,7 +112,7 @@ Ensure it contains:
 
     spring.datasource.url=jdbc:mysql://localhost:3306/drugtracker
     spring.datasource.username=druguser
-    spring.datasource.password=password
+    spring.datasource.password=Spain@4820!
     spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
     spring.jpa.hibernate.ddl-auto=update
@@ -120,7 +120,6 @@ Ensure it contains:
 
     spring.thymeleaf.cache=false
 
-Adjust password if needed.
 
 ------------------------------------------------------------------------
 
@@ -162,7 +161,7 @@ Main pages:
 
 ------------------------------------------------------------------------
 
-# Running Tests
+# Running Tests (Not yet Implemented)
 
 Run all tests:
 
