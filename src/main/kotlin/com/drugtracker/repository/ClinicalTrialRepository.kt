@@ -1,4 +1,4 @@
-package org.example.com.drugtracker.repository
+package com.drugtracker.repository
 
 import com.drugtracker.model.ClinicalTrial
 import com.drugtracker.model.Compound

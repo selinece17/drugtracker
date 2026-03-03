@@ -3,8 +3,8 @@ package com.drugtracker.service
 import com.drugtracker.model.*
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import org.example.com.drugtracker.repository.CompoundRepository
-import org.example.com.drugtracker.repository.ClinicalTrialRepository
+import com.drugtracker.repository.CompoundRepository
+import com.drugtracker.repository.ClinicalTrialRepository
 
 /**
  * Service layer for [ClinicalTrial] business logic.

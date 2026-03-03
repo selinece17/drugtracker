@@ -4,9 +4,9 @@ import com.drugtracker.model.*
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDate
-import org.example.com.drugtracker.repository.CompoundRepository
-import org.example.com.drugtracker.repository.ClinicalTrialRepository
-import org.example.com.drugtracker.repository.CompoundInventoryRepository
+import com.drugtracker.repository.CompoundRepository
+import com.drugtracker.repository.ClinicalTrialRepository
+import com.drugtracker.repository.CompoundInventoryRepository
 
 
 
